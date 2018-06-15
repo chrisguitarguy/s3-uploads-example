@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/chrisguitarguy/s3-uploads-example#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "morgan": "^1.9.0"
   },
