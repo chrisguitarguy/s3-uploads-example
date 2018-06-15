@@ -4,7 +4,7 @@
   "description": "Example application for S3 client-side uploads",
   "main": "app.js",
   "scripts": {
-    "server": "nodemon ./app.js",
+    "start": "nodemon ./app.js",
     "test": "echo \"no tests this time\""
   },
   "repository": {
@@ -22,8 +22,10 @@
   },
   "homepage": "https://github.com/chrisguitarguy/s3-uploads-example#readme",
   "dependencies": {
+    "aws-sdk": "^2.258.1",
     "express": "^4.16.3",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.17.5"
