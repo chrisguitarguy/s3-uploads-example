@@ -9,19 +9,28 @@
             body: file,
         }).then(resp => {
             return resp.text().then(body => {
-                if (!resp.ok) {
-                    return Promise.reject({
-                        status: resp.status,
-                        body,
-                    });
-                }
-
-                return {
+                const result = {
                     status: resp.status,
                     body,
                 };
+
+                if (!resp.ok) {
+                    return Promise.reject(result);
+                }
+
+                return result;
             });
         });
+    }
+
+    function submitForm(filename) {
+        return fetch('/submit', {
+            method: 'POST',
+            body: JSON.stringify({filename}),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
     }
 
     exports.onSubmit = function onSubmit(form) {
@@ -29,7 +38,6 @@
             alert('select a file please');
             return false;
         }
-
 
         var file = form.file.files[0]
 
@@ -39,13 +47,7 @@
         }).then(filename => {
             // now we know the filename of what got uploaded, send that
             // to the form in place of the actual file
-            return fetch('/submit', {
-                method: 'POST',
-                body: JSON.stringify({filename}),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            }).then(() => {
+            submitForm(filename).then(() => {
                 alert(`Hooray you uploaded ${filename}`);
                 form.reset();
             });
