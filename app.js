@@ -31,7 +31,7 @@ app.post('/presign', function (req, res) {
 
         res.status(201).json({
             url,
-            filename,
+            filename: `s3://${bucket}/${filename}`,
         });
     });
 });
