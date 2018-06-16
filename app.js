@@ -19,7 +19,7 @@ app.use(express.static('./'));
 // you may want to do something like send the original filename to this endpoint
 // to include in the generated file name or to figure out an extension.
 app.post('/presign', function (req, res) {
-    const filename = uuid4();
+    const filename = `${uuid4()}.txt`
     s3.getSignedUrl('putObject', {
         Bucket: bucket,
         Key: filename,
